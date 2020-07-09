@@ -1,4 +1,4 @@
-import { CHANGE_GLOBAL_SETTINGS } from '../actions/actionTypes';
+import { CHANGE_GLOBAL_SETTINGS } from './types';
 
 const initialState = {
   headerLinks: [
@@ -21,7 +21,7 @@ const initialState = {
 export default function globalSettingsReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_GLOBAL_SETTINGS:
-      return {...state, ...action.payload};
+      return { ...state, ...action.payload };
     default:
       return state;
   }

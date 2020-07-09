@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import CardList from '../CardList/CardList';
 import Categories from '../Categories/Categories';
 import Preloader from '../Preloader/Preloader';
-import { catalogRequest } from '../../actions';
+import { catalogRequest } from '../../redux/catalog/actions';
 
 export default function Catalog({ text }) {
   const { items, loading, error } = useSelector(state => state.catalog);

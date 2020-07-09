@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux';
 import CardList from '../CardList/CardList';
 import Preloader from '../Preloader/Preloader';
-import { topSalesRequest } from '../../actions';
+import { topSalesRequest } from '../../redux/topSales/actions';
 
 export default function TopSales({ text }) {
   const { items, loading, error } = useSelector(state => state.topSales);

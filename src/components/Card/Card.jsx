@@ -5,20 +5,25 @@ import Price from '../Price/Price';
 import Image from '../Image/Image';
 
 export default function Card({ data }) {
-  const { images, title, price, id } = data;
+  const {
+    images,
+    title,
+    price,
+    id,
+  } = data;
 
   return (
-    <div className='card'>
+    <div className="card">
       <Image id={id} title={title} images={images} />
-      <div className='card-body'>
-        <p className='card-text'>{title}</p>
-        <p className='card-text'>
-          <Price value={price} currency={' руб.'} />
+      <div className="card-body">
+        <p className="card-text">{title}</p>
+        <p className="card-text">
+          <Price value={price} currency=" руб." />
         </p>
-        <Link to={`/catalog/${id}`} className='btn btn-outline-primary'>{'Заказать'}</Link>
+        <Link to={`/catalog/${id}`} className="btn btn-outline-primary">Заказать</Link>
       </div>
     </div>
-  )
+  );
 }
 
 Card.propTypes = {
@@ -29,4 +34,4 @@ Card.propTypes = {
     price: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
   }).isRequired,
-}
+};

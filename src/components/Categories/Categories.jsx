@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { categoryChangeSelection } from '../../actions';
+import { categoryChangeSelection } from '../../redux/categories/actions';
 
 export default function Categories() {
   const categories = useSelector(state => state.categories);
