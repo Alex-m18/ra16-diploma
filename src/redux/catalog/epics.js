@@ -19,9 +19,18 @@ import {
 
 export const catalogRequestEpic = (action$) => action$.pipe(
   ofType(CATALOG_REQUEST),
-  exhaustMap(() => ajax.getJSON(`${process.env.REACT_APP_BACKEND_URL}/items`).pipe(
-    retry(5),
-    map((o) => catalogSuccess(o)),
-    catchError((e) => of(catalogFailure(e))),
-  )),
+  exhaustMap((o) => {
+    const categoryId = o.payload && o.payload.categoryId;
+    const offset = o.payload && o.payload.offset;
+    const q = o.payload && o.payload.q;
+    const urlParams = new URLSearchParams();
+    if (categoryId) urlParams.set('categoryId', categoryId);
+    if (offset) urlParams.set('offset', offset);
+    if (q && (q !== '')) urlParams.set('q', q);
+    return ajax.getJSON(`${process.env.REACT_APP_BACKEND_URL}/items?${urlParams.toString()}`).pipe(
+      retry(5),
+      map((obj) => catalogSuccess(obj)),
+      catchError((e) => of(catalogFailure(e))),
+    );
+  }),
 );

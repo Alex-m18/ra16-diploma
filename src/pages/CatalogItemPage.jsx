@@ -1,17 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+// import PropTypes from 'prop-types';
+import { useRouteMatch } from 'react-router';
+import CatalogItem from '../components/CatalogItem/CatalogItem';
 
-function CatalogItemPage(props) {
-  return (
-    <div>
-      
-    </div>
-  )
+export default function CatalogItemPage() {
+  const match = useRouteMatch();
+
+  return <CatalogItem id={match.params.id} />;
 }
-
-CatalogItemPage.propTypes = {
-
-}
-
-export default CatalogItemPage
-

@@ -13,10 +13,10 @@ export default function Card({ data }) {
   } = data;
 
   return (
-    <div className="card">
+    <div className="card catalog-item-card">
       <Image id={id} title={title} images={images} />
       <div className="card-body">
-        <p className="card-text">{title}</p>
+        <p className="card-text" style={{ minHeight: '3em' }}>{title}</p>
         <p className="card-text">
           <Price value={price} currency=" руб." />
         </p>
@@ -29,7 +29,7 @@ export default function Card({ data }) {
 Card.propTypes = {
   data: PropTypes.shape({
     category: PropTypes.number,
-    images: PropTypes.array.isRequired,
+    images: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,

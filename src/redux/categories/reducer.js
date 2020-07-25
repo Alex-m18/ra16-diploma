@@ -1,11 +1,9 @@
-import { CATEGORY_CHANGE_SELECTION } from './types';
+import {
+  CATEGORY_CHANGE_SELECTION,
+  CATEGORY_SUCCESS,
+} from './types';
 
-const initialState = [
-  { id: 12, title: 'Мужская обувь', selected: true },
-  { id: 13, title: 'Женская обувь', selected: true },
-  { id: 14, title: 'Обувь унисекс', selected: true },
-  { id: 15, title: 'Детская обувь', selected: true },
-];
+const initialState = [];
 
 export default function categoryReducer(state = initialState, action) {
   switch (action.type) {
@@ -16,6 +14,10 @@ export default function categoryReducer(state = initialState, action) {
         return o;
       });
       return newState;
+    }
+    case CATEGORY_SUCCESS: {
+      const items = action.payload;
+      return items;
     }
     default:
       return state;

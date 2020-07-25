@@ -1,46 +1,71 @@
-import React, { /*useEffect,*/ Fragment, useState } from 'react'
-// import PropTypes from 'prop-types'
-// import { useSelector, useDispatch } from 'react-redux'
-// import { imagesRequest, imagesSetShowIndex } from '../../actions';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-function Image({ id, title, images = [] }) {
-  // const { sources, showIndex } = useSelector(state => state.images.find((o) => o.id === id) || {});
-  // const dispatch = useDispatch();
+const wrapperStyle = {
+  width: '100%',
+  height: '0',
+  position: 'relative',
+  overflow: 'hidden',
+  paddingBottom: '170%', // ratio
+};
 
+const imgStyle = {
+  position: 'absolute',
+  left: '-50%',
+  top: '-50%',
+  right: '-50%',
+  bottom: '-50%',
+  heigth: 'auto',
+  width: '100%',
+  margin: 'auto',
+};
+
+function Image({ title, images = [] }) {
   const [showIndex, setShowIndex] = useState(0);
+  const [goodImages, setGoodImages] = useState([]);
 
-  // useEffect(() => {
-  //   dispatch(imagesRequest({ id, sources: images }));
-  //   return () => {}
-  // }, []);
+  useEffect(() => {
+    setGoodImages(images);
+    return () => {};
+  }, []);
 
   const handleMouseEnter = () => {
-    // if (sources.length > 1) dispatch(imagesSetShowIndex(1));
-    if (images.length > 1) setShowIndex(1);
-  }
+    if ((goodImages.length > 1) && (showIndex < goodImages.length - 1)) {
+      setShowIndex(showIndex + 1);
+    }
+  };
 
   const handleMouseLeave = () => {
-    // if (sources.length > 0) dispatch(imagesSetShowIndex(0));
-    if (images.length > 1) setShowIndex(0);
-  }
+    if (goodImages.length > 1) setShowIndex(0);
+  };
+
+  const handleError = () => {
+    if (showIndex === goodImages.length - 1) setShowIndex(0);
+    setGoodImages(goodImages.filter((_, index) => index !== showIndex));
+  };
 
   return (
-    <Fragment>
-      { /*sources.length*/ images.length && <img 
-        // src={sources[showIndex]}
-        src={images[showIndex]}
-        className='card-img-top img-fluid'
-        alt={title}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      />}
-    </Fragment>
-  )
+    <>
+      { images.length && (
+        <div style={wrapperStyle}>
+          <img
+            src={goodImages[showIndex]}
+            // className="card-img-top img-fluid"
+            alt={title}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            style={imgStyle}
+            onError={handleError}
+          />
+        </div>
+      )}
+    </>
+  );
 }
 
 Image.propTypes = {
+  title: PropTypes.string.isRequired,
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
-}
-
-export default Image
-
+export default Image;

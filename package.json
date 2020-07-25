@@ -15,12 +15,13 @@
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
     "redux-observable": "^1.2.0",
+    "reselect": "^4.0.0",
     "rxjs": "^6.5.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "eslint ./src",
+    "lint": "eslint --ext js,jsx .",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

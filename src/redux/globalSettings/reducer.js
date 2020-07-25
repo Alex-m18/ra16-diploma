@@ -16,6 +16,7 @@ const initialState = {
     name: 'К весне готовы!',
     src: '/img/banner.jpg',
   },
+  searchString: '',
 };
 
 export default function globalSettingsReducer(state = initialState, action) {

@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer';
 
 import CatalogItemPage from './pages/CatalogItemPage';
 import CatalogPage from './pages/CatalogPage';
+import CartPage from './pages/CartPage';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ContactsPage from './pages/ContactsPage';
@@ -42,9 +43,10 @@ function App() {
               <Banner name={banner.name} src={banner.src} />
               <Switch>
                 <Route exact path="/catalog" component={CatalogPage} />
-                <Route path="/catalog/:id([0-9]+)?" component={CatalogItemPage} />
-                <Route path="/about" component={AboutPage} />
-                <Route path="/contacts" component={ContactsPage} />
+                <Route exact path="/catalog/:id([0-9]+)?" component={CatalogItemPage} />
+                <Route exact path="/about" component={AboutPage} />
+                <Route exact path="/contacts" component={ContactsPage} />
+                <Route exact path="/cart" component={CartPage} />
                 <Route exact path="/" component={HomePage} />
                 <Route component={Page404} />
               </Switch>

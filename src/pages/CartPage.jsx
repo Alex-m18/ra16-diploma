@@ -1,17 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import Cart from '../components/Cart/Cart';
+import Order from '../components/Order/Order';
 
-function CartPage(props) {
+export default function CartPage() {
   return (
-    <div>
-      
-    </div>
-  )
+    <>
+      <Cart />
+      <Order />
+    </>
+  );
 }
-
-CartPage.propTypes = {
-
-}
-
-export default CartPage
-
